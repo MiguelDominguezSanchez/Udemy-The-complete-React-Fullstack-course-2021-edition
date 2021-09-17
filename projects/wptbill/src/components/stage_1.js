@@ -14,11 +14,14 @@ const Stage1 = () => {
 		const validate = validateInput(value)
 
 		if (validate) {
-			console.log(value)
-		} else {
-			console.log('error')
+			// form is valid...
+			setError([false, ''])
+			context.addPlayer(value)
+			textInput.current.value = ''
 		}
 	}
+
+	console.log(context)
 
 	const validateInput = (value) => {
 		if (value === '') {
@@ -43,6 +46,8 @@ const Stage1 = () => {
 						ref={textInput}
 					/>
 				</Form.Group>
+
+				{error[0] ? <Alert variant='danger'>{error[1]}</Alert> : null}
 
 				<Button className='miami' variant='primary' type='submit'>
 					Add player
