@@ -20,6 +20,10 @@ const Header = () => {
 							Adjel
 						</NavLink>{' '}
 						–
+						<NavLink className='p-2' to='/profile'>
+							Profile
+						</NavLink>{' '}
+						–
 					</nav>
 				</div>
 

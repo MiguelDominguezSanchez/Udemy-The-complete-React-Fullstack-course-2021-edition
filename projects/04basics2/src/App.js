@@ -5,6 +5,7 @@ import Header from './components/header'
 import PureComp from './components/pureComp'
 import PureCompF from './components/pureCompF'
 import Adjel from './components/adjel'
+import Profile from './components/profile'
 
 const App = () => {
 	return (
@@ -13,6 +14,7 @@ const App = () => {
 				<Header />
 				<div className='container'>
 					<Switch>
+						<Route path='/profile' component={Profile} />
 						<Route path='/adjel' component={Adjel} />
 						<Route path='/purecomp' component={PureComp} />
 						<Route path='/purecompf' component={PureCompF} />
