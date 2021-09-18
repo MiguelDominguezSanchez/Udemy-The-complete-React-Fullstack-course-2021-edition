@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Posts = () => {
-	return <>Hello</>
+	return <>post</>
 }
 
 export default Posts
