@@ -12,6 +12,10 @@ const Header = () => {
 							Home
 						</NavLink>{' '}
 						–
+						<NavLink className='p-2' to='/purecomp'>
+							PureComp
+						</NavLink>{' '}
+						–
 					</nav>
 				</div>
 
