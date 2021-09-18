@@ -24,6 +24,10 @@ const Header = () => {
 							Profile
 						</NavLink>{' '}
 						–
+						<NavLink className='p-2' to='/user'>
+							User
+						</NavLink>{' '}
+						–
 					</nav>
 				</div>
 
