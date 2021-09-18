@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom'
 import Home from './components/home'
 import Posts from './components/posts'
 import Profile from './components/profile'
+import PostItem from './components/postItem'
 
 const App = () => {
 	return (
@@ -38,6 +39,7 @@ const App = () => {
 			<div className='container'>
 				<Route path='/' exact component={Home} />
 				<Route path='/posts' exact component={Posts} />
+				<Route path='/posts/:id' exact component={PostItem} />
 				<Route path='/profile' exact component={Profile} />
 			</div>
 		</BrowserRouter>
