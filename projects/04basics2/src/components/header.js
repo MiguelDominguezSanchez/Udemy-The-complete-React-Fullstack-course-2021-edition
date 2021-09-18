@@ -16,6 +16,10 @@ const Header = () => {
 							PureComp
 						</NavLink>{' '}
 						–
+						<NavLink className='p-2' to='/adjel'>
+							Adjel
+						</NavLink>{' '}
+						–
 					</nav>
 				</div>
 
