@@ -8,7 +8,6 @@ import reducers from './store/reducers'
 import promiseMiddleware from 'redux-promise'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-
 const createStoreWithMiddleware = composeEnhancers(
 	applyMiddleware(promiseMiddleware)
 )(createStore)

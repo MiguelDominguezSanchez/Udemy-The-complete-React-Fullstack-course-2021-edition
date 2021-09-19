@@ -11,6 +11,8 @@ export default function appReducer(state = DEFAULT_STORE, action) {
 			return { ...state, moviesList: action.payload }
 		case 'MOVIES_DATA':
 			return { ...state, movieData: action.payload }
+		case 'GET_USERS':
+			return { ...state, users: action.payload }
 		default:
 			return state
 	}
