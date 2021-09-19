@@ -1,3 +1,5 @@
+import { MOVIES_LIST, MOVIE_DATA } from '../types'
+
 const DEFAULT_STORE = {
 	userName: 'Francis',
 	userId: 1234,

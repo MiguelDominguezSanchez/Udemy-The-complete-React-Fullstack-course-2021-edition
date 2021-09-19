@@ -1,3 +1,5 @@
+import { MOVIES_LIST, MOVIE_DATA } from '../types'
+
 export const moviesList = () => {
 	return {
 		type: 'MOVIES_LIST',
