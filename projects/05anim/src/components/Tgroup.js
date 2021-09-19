@@ -1,39 +1,44 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
+class Tgroup extends Component {
+	state = {
+		items: ['24', '35', '140'],
+	}
 
-class Tgroup extends Component{
-    state = {
-        items:[]
-    }
-    
-    addElements () {
-      
-    }
+	showElements() {
+		return this.state.items.map((item, i) => (
+			<CSSTransition key={i} className='item' timeout={1000} appear={true}>
+				<div className='item'>{item}</div>
+			</CSSTransition>
+		))
+	}
 
-    generateNumber(){
-       
-    }
+	generateNumber() {
+		let newArray = [...this.state.items, Math.floor(Math.random() * 100) + 1]
 
-    removeNumber(){
-      
-    }
+		this.setState({ items: newArray })
+	}
 
-    render(){
-        return(
-            <div>
-                {this.addElements()}
-             
-                <div className="btns">
-                    <button onClick={()=> this.generateNumber()}>Add Elements</button>
-                    <button onClick={()=> this.removeNumber()}>Remove Elements</button>
-                </div>
-            </div>
-        )
-    }
+	removeNumber() {
+		let newArray = this.state.items.slice(0, -1)
+		this.setState({ items: newArray })
+	}
 
+	render() {
+		return (
+			<div>
+				<TransitionGroup component='div' className='list'>
+					{this.showElements()}
+				</TransitionGroup>
 
-
+				<div className='btns'>
+					<button onClick={() => this.generateNumber()}>Add Elements</button>
+					<button onClick={() => this.removeNumber()}>Remove Elements</button>
+				</div>
+			</div>
+		)
+	}
 }
 
-
-export default Tgroup;
+export default Tgroup

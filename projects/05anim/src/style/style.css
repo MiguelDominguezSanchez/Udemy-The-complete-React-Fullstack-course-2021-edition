@@ -57,3 +57,16 @@ opacity: 0;
                 TRANSITIONS GROUP 
 ========================================*/
 
+.item {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 1000ms ease-in;
+}
+
+.item-appear-active,
+.item-appear-done,
+.item-enter.item-enter-active,
+.item-enter-done {
+  opacity: 1;
+  transform: translateX(0%);
+}
