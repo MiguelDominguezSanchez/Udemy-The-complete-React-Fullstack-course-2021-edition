@@ -12,7 +12,7 @@ class CssTr extends Component {
 		return (
 			<div>
 				<CSSTransition in={this.state.show} timeout={500} className='cssSq'>
-					<div className='cssSq'>hello</div>
+					<div className={`cssSq ${this.state.show}`}>hello</div>
 				</CSSTransition>
 				<button onClick={this.showDiv}>toggle it</button>
 			</div>
