@@ -1,7 +1,12 @@
 import React from 'react'
+import HomePost from './homePost'
 
 const Home = () => {
-	return <>home</>
+	return (
+		<>
+			<HomePost />
+		</>
+	)
 }
 
 export default Home
