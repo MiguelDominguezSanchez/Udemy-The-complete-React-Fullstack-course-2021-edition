@@ -46,7 +46,7 @@ const HomePosts = () => {
 								<div className='content'>
 									<div className='title'>{item.title}</div>
 									<div className='excerpt'>{item.excerpt}</div>
-									<LinkContainer to={`/articule/${item.id}`} className='mt-3'>
+									<LinkContainer to={`/article/${item.id}`} className='mt-3'>
 										<Button variant='light'>Read more</Button>
 									</LinkContainer>
 								</div>
