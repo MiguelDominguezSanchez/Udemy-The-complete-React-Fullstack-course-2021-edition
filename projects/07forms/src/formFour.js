@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import FormField from './utils/formFields'
+import { validate } from './utils/validate'
 
 class FormFour extends Component {
 	state = {
@@ -15,6 +16,7 @@ class FormFour extends Component {
 				},
 				validation: {
 					required: true,
+					email: true,
 				},
 				valid: false,
 				touch: false,
@@ -30,6 +32,9 @@ class FormFour extends Component {
 		newElement.value = element.event.target.value
 
 		// validation
+		let validateData = validate(newElement)
+		newElement.valid = validateData[0]
+		newElement.validationMessage = validateData[1]
 
 		// blur
 		if (element.blur) {
