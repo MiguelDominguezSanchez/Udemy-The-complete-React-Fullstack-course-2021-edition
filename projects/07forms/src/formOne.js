@@ -5,15 +5,36 @@ const FormOne = () => {
 	return (
 		<Formik
 			initialValues={{
-				firstname: 'steve',
+				firstname: '',
 				lastname: '',
 				email: '',
 				country: '',
 				state: '',
 				zip: '',
 			}}
-			onSubmit={() => {
-				console.log('form submitted')
+			validate={(values) => {
+				const errors = {}
+
+				if (!values.firstname) {
+					errors.firstname = 'Sorry, this is required!'
+				}
+				if (!values.lastname) {
+					errors.lastname = 'Sorry, this is required!'
+				}
+				if (!values.email) {
+					errors.email = 'Sorry, this is required!'
+				} else if (
+					!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+						values.email
+					)
+				) {
+					errors.email = 'Invalid email'
+				}
+
+				return errors
+			}}
+			onSubmit={(values) => {
+				console.log(values)
 			}}
 		>
 			{({
@@ -40,7 +61,11 @@ const FormOne = () => {
 											name='firstname'
 											value={values.firstname}
 											onChange={handleChange}
+											onBlur={handleBlur}
 										/>
+										{errors.firstname && touched.firstname ? (
+											<span>{errors.firstname}</span>
+										) : null}
 									</div>
 									<div className='col-md-6 mb-3'>
 										<label htmlFor='lastname'>Last name</label>
@@ -49,7 +74,13 @@ const FormOne = () => {
 											className='form-control'
 											id='lastname'
 											name='lastname'
+											value={values.lastname}
+											onChange={handleChange}
+											onBlur={handleBlur}
 										/>
+										{errors.lastname && touched.lastname ? (
+											<span>{errors.lastname}</span>
+										) : null}
 									</div>
 								</div>
 
@@ -61,7 +92,13 @@ const FormOne = () => {
 										id='email'
 										name='email'
 										placeholder='you@example.com'
+										value={values.email}
+										onChange={handleChange}
+										onBlur={handleBlur}
 									/>
+									{errors.email && touched.email ? (
+										<span>{errors.email}</span>
+									) : null}
 								</div>
 
 								<div className='row'>
@@ -71,6 +108,8 @@ const FormOne = () => {
 											className='custom-select d-block w-100'
 											id='country'
 											name='country'
+											value={values.country}
+											onChange={handleChange}
 										>
 											<option value=''>Choose...</option>
 											<option value='US'>United States</option>
@@ -84,6 +123,8 @@ const FormOne = () => {
 											className='custom-select d-block w-100'
 											id='state'
 											name='state'
+											value={values.state}
+											onChange={handleChange}
 										>
 											<option value=''>Choose...</option>
 											<option value='california'>California</option>
@@ -98,6 +139,8 @@ const FormOne = () => {
 											className='form-control'
 											id='zip'
 											name='zip'
+											value={values.zip}
+											onChange={handleChange}
 										/>
 									</div>
 								</div>
