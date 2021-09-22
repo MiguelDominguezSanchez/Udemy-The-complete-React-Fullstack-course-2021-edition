@@ -1,6 +1,5 @@
 import React from 'react'
 import { Formik } from 'formik'
-import * as Yup from 'yup'
 
 const FormOne = () => {
 	return (
@@ -13,13 +12,27 @@ const FormOne = () => {
 				state: '',
 				zip: '',
 			}}
-			validationSchema={Yup.object({
-				firstname: Yup.string()
-					.required('Sorry, this is required')
-					.max(5, 'Sorry, the name is too long'),
-				lastname: Yup.string().required('Sorry, this is required'),
-				email: Yup.string().required().email('Needs to be an email'),
-			})}
+			validate={(values) => {
+				const errors = {}
+
+				if (!values.firstname) {
+					errors.firstname = 'Sorry, this is required!'
+				}
+				if (!values.lastname) {
+					errors.lastname = 'Sorry, this is required!'
+				}
+				if (!values.email) {
+					errors.email = 'Sorry, this is required!'
+				} else if (
+					!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+						values.email
+					)
+				) {
+					errors.email = 'Invalid email'
+				}
+
+				return errors
+			}}
 			onSubmit={(values) => {
 				console.log(values)
 			}}
