@@ -23,14 +23,39 @@ class FormFour extends Component {
 		},
 	}
 
+	updateForm = (element) => {
+		const newFormData = { ...this.state.formData }
+		const newElement = { ...newFormData[element.id] }
+
+		newElement.value = element.event.target.value
+
+		// validation
+
+		// blur
+		if (element.blur) {
+			newElement.touched = element.blur
+		}
+
+		newFormData[element.id] = newElement
+		this.setState({
+			formData: newFormData,
+		})
+		console.log(this.state.formData.name)
+	}
+
 	render() {
+		console.log(this.state.formData.name)
 		return (
 			<>
 				<div className='container'>
 					<form>
 						<div className='form-group'>
 							<label>Name</label>
-							<FormField formData={this.state.formData.name} id='name' />
+							<FormField
+								formData={this.state.formData.name}
+								change={(element) => this.updateForm(element)}
+								id='name'
+							/>
 						</div>
 					</form>
 				</div>
