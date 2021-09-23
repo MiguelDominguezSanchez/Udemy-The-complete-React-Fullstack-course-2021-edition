@@ -16,7 +16,21 @@ class FormFour extends Component {
 				},
 				validation: {
 					required: true,
-					email: true,
+				},
+				valid: false,
+				touch: false,
+				validationMessage: '',
+			},
+			lastname: {
+				element: 'input',
+				value: '',
+				config: {
+					name: 'lastname_input',
+					type: 'text',
+					placeholder: 'Enter your lastname',
+				},
+				validation: {
+					required: true,
 				},
 				valid: false,
 				touch: false,
@@ -48,6 +62,45 @@ class FormFour extends Component {
 		console.log(this.state.formData.name)
 	}
 
+	submitForm = (event) => {
+		event.preventDefault()
+
+		let dataToSubmit = {}
+		let formIsValid = true
+
+		for (let key in this.state.formData) {
+			formIsValid = this.state.formData[key].valid && formIsValid
+		}
+		if (formIsValid) {
+			this.setState({ loading: true })
+			for (let key in this.state.formData) {
+				dataToSubmit[key] = this.state.formData[key].value
+			}
+			// console.log('SUBMIT FORM WITH', dataToSubmit)
+			setTimeout(() => {
+				this.setState({ loading: false })
+				this.onSuccess()
+			}, 2000)
+		} else {
+			alert('Sorry the form is not valid')
+		}
+	}
+
+	onSuccess = () => {
+		let formDataCopy = {
+			...this.state.formData,
+		}
+
+		for (let key in this.state.formData) {
+			formDataCopy[key].value = ''
+			formDataCopy[key].value = false
+			formDataCopy[key].touched = false
+			formDataCopy[key].validationMessage = ''
+		}
+		this.setState({ formData: formDataCopy })
+		alert('THANK YOU WE WILL CONTACT YOU LATER ... OR NOT')
+	}
+
 	render() {
 		console.log(this.state.formData.name)
 		return (
@@ -62,6 +115,23 @@ class FormFour extends Component {
 								id='name'
 							/>
 						</div>
+						<div className='form-group'>
+							<label>Lastname</label>
+							<FormField
+								formData={this.state.formData.lastname}
+								change={(element) => this.updateForm(element)}
+								id='lastname'
+							/>
+						</div>
+
+						<button
+							type='submit'
+							className='btn btn-primary'
+							onClick={(event) => this.submitForm(event)}
+							disable={this.state.loading}
+						>
+							Submit
+						</button>
 					</form>
 				</div>
 			</>
