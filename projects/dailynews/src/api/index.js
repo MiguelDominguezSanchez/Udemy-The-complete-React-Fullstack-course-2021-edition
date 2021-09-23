@@ -63,3 +63,16 @@ export const getPostById = async (id) => {
 		return '404'
 	}
 }
+
+export const sendMessage = async (data) => {
+	try {
+		const response = await axios({
+			method: 'POST',
+			url: `${URL_SERV}/contat`,
+			data: data,
+		})
+		return true
+	} catch (error) {
+		return false
+	}
+}
