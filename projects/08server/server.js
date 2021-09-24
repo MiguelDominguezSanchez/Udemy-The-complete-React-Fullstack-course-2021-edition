@@ -5,8 +5,18 @@ const fs = require('fs')
 let HTML = fs.readFileSync(`${__dirname}/index.html`)
 
 app.use('/css', express.static(__dirname + '/public/css'))
+app.use('/', (req, res, next) => {
+	console.log('someone made a request !! – ' + req.url)
+	res.cookie('CookieName', 'Cookievalue')
+	next()
+})
 
-app.get('/', (req, res) => {
+const hello = (req, res, next) => {
+	console.log('hello')
+	next()
+}
+
+app.get('/', hello, (req, res) => {
 	res.end(HTML)
 })
 
